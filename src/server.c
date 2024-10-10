@@ -6,7 +6,7 @@
 /*   By: flo <flo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 08:29:17 by fkeitel           #+#    #+#             */
-/*   Updated: 2024/06/28 20:22:27 by flo              ###   ########.fr       */
+/*   Updated: 2024/10/10 15:42:30 by flo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 //	function to print the message using the write function for quicker response
 int	print_message(char **message, char *client_pid)
 {
-	int	i;
-
-	i = 0;
 	if (kill((pid_t)ft_atoi(client_pid), SIGUSR1) == -1)
 	{
 		ft_printf("\033[0;31merror sending signal\033[0m\n");
@@ -110,27 +107,27 @@ void	handle_sigusr(int signum)
 	}
 }
 
-int	main(void)
-{
-	int	i;
+// int	main(void)
+// {
+// 	int	i;
 
-	i = 0;
-	signal(SIGUSR1, handle_sigusr);
-	signal(SIGUSR2, handle_sigusr);
-	ft_printf("\033[0;33mServer PID: %d\033[0m\n\n", getpid());
-	ft_printf("\033[0;33mwaiting for signals \033[0m");
-	while (i++ < 5)
-	{
-		ft_printf("\033[0;33m.\033[0m");
-		sleep(1);
-	}
-	ft_printf("\n");
-	while (1)
-	{
-		pause();
-	}
-	return (0);
-}
+// 	i = 0;
+// 	signal(SIGUSR1, handle_sigusr);
+// 	signal(SIGUSR2, handle_sigusr);
+// 	ft_printf("\033[0;33mServer PID: %d\033[0m\n\n", getpid());
+// 	ft_printf("\033[0;33mwaiting for signals \033[0m");
+// 	while (i++ < 5)
+// 	{
+// 		ft_printf("\033[0;33m.\033[0m");
+// 		sleep(1);
+// 	}
+// 	ft_printf("\n");
+// 	while (1)
+// 	{
+// 		pause();
+// 	}
+// 	return (0);
+// }
 
 volatile sig_atomic_t	g_done = 0;
 
@@ -151,7 +148,7 @@ int	main(void)
 	signal(SIGALRM, handle_timeout);
 	ft_printf("\033[0;33mServer PID: %d\033[0m\n\n", getpid());
 	ft_printf("\033[0;33mwaiting for signals \033[0m");
-	while (i++ < 5)
+	while (i++ < 10)
 	{
 		ft_printf("\033[0;33m.\033[0m");
 		sleep(1);
